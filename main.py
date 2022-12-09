@@ -1,4 +1,5 @@
-from ss import amazon
+from amazon import amazon
+from canez import canez
 from casami import casami
 from digicel import digicel
 from ebay import ebay
@@ -15,13 +16,16 @@ def main():
     amazon(input_key, file_name)
 
     print("Collecting infos from Casami web site...")
-    casami(input_key, file_name)
-
+    casami(input_key, file_name)    
+    
     print("Collecting infos from Digicel web site...")
     digicel(input_key, file_name)
 
     print("Collecting infos from Ebay web site...")
     ebay(input_key, file_name)
+
+    print("Collecting infos from Valerio Canez web site...")
+    canez(input_key, file_name)
 
 if __name__ == '__main__':
     main()
