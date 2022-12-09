@@ -32,5 +32,6 @@ def digicel(key_input, file):
         
             f.write(product_name.replace(",", "|") + ", " + price + "\n")
         f.write("\n")
+        print("Done")
 
 

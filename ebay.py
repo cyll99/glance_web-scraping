@@ -18,7 +18,8 @@ def ebay(key_input, file):
     page_soup = soup(uClient, "html.parser")
 
     # finds each product from the store page
-    containers = page_soup.findAll("li", {"class": "s-item s-item__pl-on-bottom s-item--watch-at-corner"})
+    containers = page_soup.findAll("li", {"class": "s-item s-item__pl-on-bottom"})
+
 
     with open(file, "a", encoding="UTF-8") as f:
         f.write("Ebay web site \n\n")
@@ -37,5 +38,6 @@ def ebay(key_input, file):
             # writes the dataset to file
             f.write(product_name.replace(",", "|") + ", " + price + "\n")
         f.write("\n")
+        print("Done")
 
 
