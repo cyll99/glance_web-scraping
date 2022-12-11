@@ -15,7 +15,7 @@ def amazon(key_input, file):
         print("Connection failed")
         return
 
-    soup = BeautifulSoup(webpage.content, "html.parser")
+    soup = BeautifulSoup(webpage.content, "lxml")
     # print(soup)
 
     results = soup.find_all("div", {"data-component-type":"s-search-result"})
