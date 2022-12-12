@@ -22,13 +22,12 @@ def ebay(key_input, file):
 
 
     with open(file, "a", encoding="UTF-8") as f:
-        f.write("Ebay web site \n\n")
  
         for container in containers:
             make_rating_sp = container.div
 
          
-            product_name = container.div.div.div.div.img["alt"]
+            product_name = container.div.div.div.div.img["alt"].replace(",", "|")
 
       
             shipping = make_rating_sp.findAll("div", {"class":"s-item__detail s-item__detail--primary"})
@@ -36,8 +35,8 @@ def ebay(key_input, file):
           
 
             # writes the dataset to file
-            f.write(product_name.replace(",", "|") + ", " + price + "\n")
-        f.write("\n")
+            f.write(f"{product_name}, {price}, Ebay\n")
+
         print("Done")
 
 

@@ -23,7 +23,6 @@ def casami(input_key, file):
 
 
     with open(file, "a", encoding="UTF-8") as f:
-        f.write("Casami web site \n\n")
  
         for result in results:
             # print(result)
@@ -31,7 +30,7 @@ def casami(input_key, file):
                 name = result.img["title"]
             except:
                 name = result.find_all("h4")
-                name = name[0].select_one("a").text.strip()
+                name = name[0].select_one("a").text.strip().replace(",", "|")
 			
 
             
@@ -40,8 +39,8 @@ def casami(input_key, file):
           
 
             # writes the dataset to file
-            f.write(name.replace(",", "|") + ", " + price + "\n")
-        f.write("\n")
+            f.write(f"{name}, {price}, Casami\n")
+
         print("Done")
 
 

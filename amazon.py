@@ -22,7 +22,6 @@ def amazon(key_input, file):
 
 
     with open(file, "a", encoding="UTF-8") as f:
-        f.write("Amazon web site \n\n")
  
         for result in results:
             price = result.find_all("span", attrs={'class':'a-price'})
@@ -32,12 +31,11 @@ def amazon(key_input, file):
             price = price[0].select_one("span").text
             
             name = result.find_all("span", attrs={"class":'a-size-medium a-color-base a-text-normal'})
-            name = name[0].text
+            name = name[0].text.replace(",", "|")
           
 
             # writes the dataset to file
-            f.write(name.replace(",", "|") + ", " + price + "\n")
-        f.write("\n")
+            f.write(f"{name}, {price}, Amazon\n")
         print("Done")
 
 

@@ -20,18 +20,17 @@ def digicel(key_input, file):
 
  
     with open(file, "a", encoding="UTF-8") as f:
-        f.write("Digicel web site \n\n")
  
         for container in containers:
 
      
-            product_name = container.img["alt"]
+            product_name = container.img["alt"].replace(",", "|")
         
             special_price = container.findAll("div", {"class":"product details product-item-details"})
             price = special_price[0].select_one("span").text.replace("\n", " ")
         
-            f.write(product_name.replace(",", "|") + ", " + price + "\n")
-        f.write("\n")
+            f.write(f"{product_name}, {price}, Digicel\n")
+
         print("Done")
 
 
