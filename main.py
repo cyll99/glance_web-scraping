@@ -3,15 +3,25 @@ from canez import canez
 from casami import casami
 from digicel import digicel
 from ebay import ebay
-import csv
+import csv, os
 
 
+user = os.getlogin()
+directory = "ScrappingResults"
+path = f"C:/{user}/Downloads/{directory}"
+try:
+    os.makedirs(path)
+except:
+    print()
+print(path)
 def main():
+
+
     input_key = input("Enter the key search : ")
     col1, col2, col3 = "product_name", "price", "web_site"
 
     headers = f"{col1},{col2},{col3}\n"
-    file_name = str(input_key) +".csv"
+    file_name = f"{path}/{input_key}.csv"
     with open(file_name, "w", encoding="UTF-8") as file:
         file.write(headers)
     
@@ -57,8 +67,8 @@ def listing_by_price(input_key, file, col1, col2, col3):
             except:
                 continue
 
-
-    with open(input_key+"_by_prices.csv", "w", encoding="UTF-8") as file:
+    file_name = f"{path}/{input_key}_by_prices.csv"
+    with open(file_name, "w", encoding="UTF-8") as file:
         file.write(f"{col1},{col2},{col3}\n")
 
         for item in sorted(new_prices):
