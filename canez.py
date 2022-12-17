@@ -37,6 +37,7 @@ def canez(input_key, file):
                 name = result.find_all("h4")
                 name = name[0].select_one("a").text.strip().replace(",", "|") 
 			
+            image = result.img["src"].strip()
 
             
             price = result.find_all("div", attrs={"class":'price'})
@@ -45,7 +46,7 @@ def canez(input_key, file):
           
 
             # writes the dataset to file
-            f.write(f"{name}, {price}, Canez\n")
+            f.write(f"{image}, {name}, {price}, Canez\n")
 
         print("Done")
 

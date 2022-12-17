@@ -3,24 +3,26 @@ from canez import canez
 from casami import casami
 from digicel import digicel
 from ebay import ebay
-import csv, os
+import os, csv
+from flask import Flask, render_template
+from utilities import listing_by_price
 
 
-user = os.getlogin()
-directory = "ScrappingResults"
-path = f"C:/{user}/Downloads/{directory}"
-try:
-    os.makedirs(path)
-except:
-    print()
-print(path)
+col1, col2, col3, col4 = "image", "product_name", "price", "web_site"
+
 def main():
 
+    user = os.getlogin()
+    directory = "ScrappingResults"
+    path = f"C:/Users/{user}/Downloads/{directory}"
+    try:
+        os.makedirs(path)
+    except:
+        print()
 
     input_key = input("Enter the key search : ")
-    col1, col2, col3 = "product_name", "price", "web_site"
 
-    headers = f"{col1},{col2},{col3}\n"
+    headers = f"{col1},{col2},{col3},{col4}\n"
     file_name = f"{path}/{input_key}.csv"
     with open(file_name, "w", encoding="UTF-8") as file:
         file.write(headers)
@@ -42,43 +44,17 @@ def main():
     ebay(input_key, file_name)
 
     print("Sorting results by price...")
-    listing_by_price(input_key, file_name, col1, col2, col3)
+    listing_by_price(input_key, file_name, col1, col2, col3, col4, path)
 
-def listing_by_price(input_key, file, col1, col2, col3):
-    name, price, web_site, new_prices = list(), list(), list(), list()
-    item_and_index = {} #dictionary that associates each value to its index
-    with open(file, encoding="UTF-8") as csv_file:
+app = Flask(__name__)
+
+@app.route('/')
+def result():
+    with open("C:\\Users\\Mydleyka\\Downloads\\ScrappingResults\\samsung_by_prices.csv", encoding="UTF-8") as csv_file:
         reader = csv.DictReader(csv_file)
-
-        #Put each row in a list
-        for row in reader:
-            name.append(row[col1])
-            price.append(row[col2])
-            web_site.append(row[col3])
-
-
-        # Cleans the price list
-        for i in range(len(price)):
-            
-            price[i] = price[i].strip().replace(" ", "").replace(",", "").replace("$", "")
-            try:
-                new_prices.append(float(price[i]))
-                item_and_index[i] = float(price[i])
-            except:
-                continue
-
-    file_name = f"{path}/{input_key}_by_prices.csv"
-    with open(file_name, "w", encoding="UTF-8") as file:
-        file.write(f"{col1},{col2},{col3}\n")
-
-        for item in sorted(new_prices):
-            item_index = list(item_and_index.keys())[list(item_and_index.values()).index(item)] #retrieving the index of each item
-
-            file.write(f"{name[item_index]}, ${item}, {web_site[item_index]}\n") # write results
-
-    print("Done")
-
+        return render_template('index.html', result = reader)
 
 
 if __name__ == '__main__':
-    main()
+    # main()
+    app.run(debug = True)

@@ -36,10 +36,11 @@ def casami(input_key, file):
             
             price = result.find_all("div", attrs={"class":'price'})
             price = price[0].select_one("span").text.strip()
-          
+
+            image = result.img["src"].strip()
 
             # writes the dataset to file
-            f.write(f"{name}, {price}, Casami\n")
+            f.write(f"{image}, {name}, {price}, Casami\n")
 
         print("Done")
 

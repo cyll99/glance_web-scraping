@@ -32,10 +32,12 @@ def amazon(key_input, file):
             
             name = result.find_all("span", attrs={"class":'a-size-medium a-color-base a-text-normal'})
             name = name[0].text.replace(",", "|")
-          
+            
+            image = result.img["src"].strip()
+
 
             # writes the dataset to file
-            f.write(f"{name}, {price}, Amazon\n")
+            f.write(f"{image}, {name}, {price}, Amazon\n")
         print("Done")
 
 

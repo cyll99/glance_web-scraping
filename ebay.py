@@ -28,6 +28,7 @@ def ebay(key_input, file):
 
          
             product_name = container.div.div.div.div.img["alt"].replace(",", "|")
+            image = container.div.div.div.div.img["src"].strip()
 
       
             shipping = make_rating_sp.findAll("div", {"class":"s-item__detail s-item__detail--primary"})
@@ -35,7 +36,7 @@ def ebay(key_input, file):
           
 
             # writes the dataset to file
-            f.write(f"{product_name}, {price}, Ebay\n")
+            f.write(f"{image}, {product_name}, {price}, Ebay\n")
 
         print("Done")
 

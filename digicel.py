@@ -25,11 +25,14 @@ def digicel(key_input, file):
 
      
             product_name = container.img["alt"].replace(",", "|")
+            
+            image = container.img["src"].strip()
+
         
             special_price = container.findAll("div", {"class":"product details product-item-details"})
             price = special_price[0].select_one("span").text.replace("\n", " ")
         
-            f.write(f"{product_name}, {price}, Digicel\n")
+            f.write(f"{image}, {product_name}, {price}, Digicel\n")
 
         print("Done")
 
