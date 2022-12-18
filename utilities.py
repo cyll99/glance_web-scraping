@@ -1,5 +1,5 @@
 
-import csv, os
+import csv
 
 def listing_by_price(input_key, file, col1, col2, col3, col4, path):
     name, price, web_site, new_prices, images = list(), list(), list(), list(), list()

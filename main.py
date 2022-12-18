@@ -14,10 +14,11 @@ user = os.getlogin()
 directory = "ScrappingResults"
 path = f"C:/Users/{user}/Downloads/{directory}"
 try:
-    os.makedirs(path)
+    os.makedirs(path) # Path of the csv files
 except:
     print()
 
+# Downloads data from each web site
 def download_data(input_key, file_name):
  
 

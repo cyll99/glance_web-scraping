@@ -33,6 +33,13 @@
 
 }
 
+#loading {
+  float: center;
+  color: white;
+  margin-top: 50px;
+  margin-right: 50px;
+
+}
 .topnav input[type=text] {
   padding: 6px;
   margin-top: 8px;
@@ -103,7 +110,7 @@ tbody tr:hover {
   background: #014055;
 }
 
-img {
+.info img {
   border-radius: 10px;
   padding: 5px;
   width: 150px;
