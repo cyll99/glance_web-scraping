@@ -8,7 +8,7 @@
   box-sizing: border-box;
 }
 
-.topnav h1 {
+.topnav a {
   float: left;
   display: block;
   color: #fff;
@@ -17,9 +17,21 @@
   text-decoration: none;
   font-size: 17px;
 }
-/* .topnav .search-container {
+
+.topnav a:hover {
+  color: black;
+}
+
+.topnav a.active {
+  color: white;
+}
+
+
+.topnav p {
   float: right;
-} */
+  color: white;
+
+}
 
 .topnav input[type=text] {
   padding: 6px;

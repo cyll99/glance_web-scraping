@@ -31,8 +31,8 @@ def download_data(input_key, file_name):
     print("Collecting infos from Casami web site...")
     casami(input_key, file_name)    
 
-    print("Collecting infos from Valerio Canez web site...")
-    canez(input_key, file_name)
+    # print("Collecting infos from Valerio Canez web site...")
+    # canez(input_key, file_name)
 
     
     print("Collecting infos from Digicel web site...")
@@ -53,11 +53,11 @@ def result():
         # getting input_key in HTML form
         input_key = request.form.get("search")
         file_name = f"{path}/{input_key}.csv"
-
+        notice = f'You will also find the result in {path}'
         download_data(input_key, file_name)
         with open(f"{path}/{input_key}_by_prices.csv", encoding="UTF-8") as csv_file:
             reader = csv.DictReader(csv_file)
-            return render_template('index.html', result = reader)
+            return render_template('index.html', result = reader, notice=notice)
     return render_template("index.html")
 
 if __name__ == '__main__':
