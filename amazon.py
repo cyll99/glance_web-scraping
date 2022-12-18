@@ -31,7 +31,10 @@ def amazon(key_input, file):
             price = price[0].select_one("span").text
             
             name = result.find_all("span", attrs={"class":'a-size-medium a-color-base a-text-normal'})
-            name = name[0].text.replace(",", "|")
+            try:
+                name = name[0].text.replace(",", "|")
+            except:
+                print("Not found")
             
             image = result.img["src"].strip()
 

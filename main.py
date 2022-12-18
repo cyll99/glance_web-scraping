@@ -4,26 +4,24 @@ from casami import casami
 from digicel import digicel
 from ebay import ebay
 import os, csv
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from utilities import listing_by_price
 
 
 col1, col2, col3, col4 = "image", "product_name", "price", "web_site"
 
-def main():
+user = os.getlogin()
+directory = "ScrappingResults"
+path = f"C:/Users/{user}/Downloads/{directory}"
+try:
+    os.makedirs(path)
+except:
+    print()
 
-    user = os.getlogin()
-    directory = "ScrappingResults"
-    path = f"C:/Users/{user}/Downloads/{directory}"
-    try:
-        os.makedirs(path)
-    except:
-        print()
-
-    input_key = input("Enter the key search : ")
+def download_data(input_key, file_name):
+ 
 
     headers = f"{col1},{col2},{col3},{col4}\n"
-    file_name = f"{path}/{input_key}.csv"
     with open(file_name, "w", encoding="UTF-8") as file:
         file.write(headers)
     
@@ -48,13 +46,19 @@ def main():
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/',  methods =["GET", "POST"])
 def result():
-    with open("C:\\Users\\Mydleyka\\Downloads\\ScrappingResults\\samsung_by_prices.csv", encoding="UTF-8") as csv_file:
-        reader = csv.DictReader(csv_file)
-        return render_template('index.html', result = reader)
 
+    if request.method == "POST":
+        # getting input_key in HTML form
+        input_key = request.form.get("search")
+        file_name = f"{path}/{input_key}.csv"
+
+        download_data(input_key, file_name)
+        with open(f"{path}/{input_key}_by_prices.csv", encoding="UTF-8") as csv_file:
+            reader = csv.DictReader(csv_file)
+            return render_template('index.html', result = reader)
+    return render_template("index.html")
 
 if __name__ == '__main__':
-    # main()
     app.run(debug = True)

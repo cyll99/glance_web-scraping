@@ -1,16 +1,31 @@
 <!doctype html>
 <html>
+   <head>
+      <link rel="stylesheet" href="/static/style.css">
+      <title>JGlance</title>
+    </head>
    <body>
-      <table border = 1>
-        {% for value in result %}
+      <div class="topnav">
+         <h1>Quick Glance</h1>
+         <div class="search-container">
+            <form action="{{ url_for("result")}}" method="post">
+            <input type="text" placeholder="Search.." name="search">
+            <button type="submit">Submit</button>
+            </form>
+         </div>
+      </div>
+      <div class="info">
+         <table>
+         {% for value in result %}
 
-    
-               <th> <img src= {{ value["image"] }}> </th>
-               <td> {{ value["product_name"] }} </td>
-               <td> {{ value["price"] }} </td>
-               <td> {{ value["web_site"] }}</td>
-            </tr>
-         {% endfor %}
-      </table>
+      
+                  <th> <img src= {{ value["image"] }}> </th>
+                  <td> {{ value["product_name"] }} </td>
+                  <td> {{ value["price"] }} </td>
+                  <td> {{ value["web_site"] }}</td>
+               </tr>
+            {% endfor %}
+         </table>
+      </div>
    </body>
 </html>
