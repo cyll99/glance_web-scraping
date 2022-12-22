@@ -1,8 +1,8 @@
 
 import csv
 
-def listing_by_price(input_key, file, col1, col2, col3, col4, path):
-    name, price, web_site, new_prices, images = list(), list(), list(), list(), list()
+def listing_by_price(input_key, file, col1, col2, col3, col4, col5, path):
+    name, price, web_site, new_prices, images, product_link = list(), list(), list(), list(), list(), list()
     item_and_index = {} #dictionary that associates each value to its index
     with open(file, encoding="UTF-8") as csv_file:
         reader = csv.DictReader(csv_file)
@@ -13,6 +13,7 @@ def listing_by_price(input_key, file, col1, col2, col3, col4, path):
             name.append(row[col2])
             price.append(row[col3])
             web_site.append(row[col4])
+            product_link.append(row[col5])
             
 
 
@@ -28,12 +29,12 @@ def listing_by_price(input_key, file, col1, col2, col3, col4, path):
 
     file_name = f"{path}/{input_key}_by_prices.csv"
     with open(file_name, "w", encoding="UTF-8") as file:
-        file.write(f"{col1},{col2},{col3},{col4}\n")
+        file.write(f"{col1},{col2},{col3},{col4},{col5}\n")
 
         for item in sorted(new_prices):
             item_index = list(item_and_index.keys())[list(item_and_index.values()).index(item)] #retrieving the index of each item
 
-            file.write(f"{images[item_index]}, {name[item_index]}, ${item}, {web_site[item_index]}\n") # write results
+            file.write(f"{images[item_index]}, {name[item_index]}, ${item}, {web_site[item_index]}, {product_link[item_index]}\n") # write results
 
     print("Done")
 
