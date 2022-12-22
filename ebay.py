@@ -33,12 +33,8 @@ def ebay(key_input, file):
       
             shipping = make_rating_sp.findAll("div", {"class":"s-item__detail s-item__detail--primary"})
             price = shipping[0].select_one("span").text
-<<<<<<< HEAD
 
             link_product = container.div.div.a["href"]
-=======
-          
->>>>>>> 071d41dc5644ee5cff34385f42adbcf5d240b1d6
             
 
             # writes the dataset to file
