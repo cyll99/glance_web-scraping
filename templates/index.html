@@ -8,14 +8,15 @@
     </head>
    <body>
       <div class="topnav">
+         <p>Take a quick glance at the price of the item you want to buy!</p>
          <a class="active" href="{{ url_for("result")}}">Quick Glance</a>
-         <p>{{ notice }}</p>
          <div class="search-container">
             <form action="{{ url_for("result")}}" method="post">
             <input type="text" placeholder="Search.." name="search">
             <button type="submit" onclick="$('#loading').show();">Submit</button>
             </form>
          </div>
+         <p>{{ notice }}</p>
       </div>
       <div id="loading" style="display:none;">Loading...</div>
       <div class="info">
@@ -24,7 +25,11 @@
 
       
                   <th> <img src= {{ value["image"] }}> </th>
-                  <td> {{ value["product_name"] }} </td>
+                  {% if value["web_site"] == "Amazon" %}
+                     <td> <a href= {{ amazon }}  target="_blank">{{ value["product_name"] }}  </a> </td>
+                  {% else %}
+                  <td> <a href= {{ ebay }}  target="_blank">{{ value["product_name"] }} </a> </td>
+                  {% endif %}
                   <td> {{ value["price"] }} </td>
                   <td> {{ value["web_site"] }}</td>
                </tr>

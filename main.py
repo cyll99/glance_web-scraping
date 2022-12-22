@@ -1,7 +1,4 @@
 from amazon import amazon
-from canez import canez
-from casami import casami
-from digicel import digicel
 from ebay import ebay
 import os, csv
 from flask import Flask, render_template, request
@@ -29,16 +26,6 @@ def download_data(input_key, file_name):
     print("Collecting infos from Amazon web site...")
     amazon(input_key, file_name)
 
-    print("Collecting infos from Casami web site...")
-    casami(input_key, file_name)    
-
-    # print("Collecting infos from Valerio Canez web site...")
-    # canez(input_key, file_name)
-
-    
-    print("Collecting infos from Digicel web site...")
-    digicel(input_key, file_name)
-
     print("Collecting infos from Ebay web site...")
     ebay(input_key, file_name)
 
@@ -56,9 +43,11 @@ def result():
         file_name = f"{path}/{input_key}.csv"
         notice = f'You will also find the result in {path}'
         download_data(input_key, file_name)
+        amazon_site = "https://www.amazon.com/s?k="+input_key
+        ebay_site = "https://www.ebay.com/sch/i.html?_from=R40&_trksid=p2380057.m570.l1313&_nkw="+input_key
         with open(f"{path}/{input_key}_by_prices.csv", encoding="UTF-8") as csv_file:
             reader = csv.DictReader(csv_file)
-            return render_template('index.html', result = reader, notice=notice)
+            return render_template('index.html', result = reader, notice=notice, amazon = amazon_site, ebay = ebay_site)
     return render_template("index.html")
 
 if __name__ == '__main__':

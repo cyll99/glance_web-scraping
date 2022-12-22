@@ -8,6 +8,10 @@
   box-sizing: border-box;
 }
 
+.topnav{
+  float: center;
+}
+
 .topnav a {
   float: left;
   display: block;
@@ -28,7 +32,7 @@
 
 
 .topnav p {
-  float: right;
+  float: center;
   color: white;
 
 }
@@ -119,4 +123,10 @@ tbody tr:hover {
 
 img:hover {
   box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+
+a:link {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
 }
