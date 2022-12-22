@@ -4,11 +4,12 @@
       <link rel="stylesheet" href="/static/style.css">
       <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 
-      <title>JGlance</title>
+      <title>Quick_Glance</title>
     </head>
    <body>
+      <div class="main">
+         <h1>Take a quick glance at the price of the item you want to buy!</h1>
       <div class="topnav">
-         <p>Take a quick glance at the price of the item you want to buy!</p>
          <a class="active" href="{{ url_for("result")}}">Quick Glance</a>
          <div class="search-container">
             <form action="{{ url_for("result")}}" method="post">
@@ -16,9 +17,9 @@
             <button type="submit" onclick="$('#loading').show();">Submit</button>
             </form>
          </div>
+         <div id="loading" style="display:none;">Loading...</div>
          <p>{{ notice }}</p>
       </div>
-      <div id="loading" style="display:none;">Loading...</div>
       <div class="info">
          <table>
          {% for value in result %}
@@ -32,5 +33,7 @@
             {% endfor %}
          </table>
       </div>
+      </div>
+      
    </body>
 </html>
