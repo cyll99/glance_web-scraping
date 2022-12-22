@@ -25,7 +25,15 @@
 
       
                   <th> <img src= {{ value["image"] }}> </th>
+<<<<<<< HEAD
                   <td> <a href= {{ value["product_link"] }}  target="_blank">{{ value["product_name"] }}  </a> </td>
+=======
+                  {% if value["web_site"] == "Amazon" %}
+                     <td> <a href= {{ amazon }}  target="_blank">{{ value["product_name"] }}  </a> </td>
+                  {% else %}
+                  <td> <a href= {{ ebay }}  target="_blank">{{ value["product_name"] }} </a> </td>
+                  {% endif %}
+>>>>>>> 071d41dc5644ee5cff34385f42adbcf5d240b1d6
                   <td> {{ value["price"] }} </td>
                   <td> {{ value["web_site"] }}</td>
                </tr>
