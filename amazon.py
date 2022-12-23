@@ -38,9 +38,12 @@ def amazon(key_input, file):
             
             image = result.img["src"].strip()
 
+            product_link = result.find_all("a")
+            product_link = "https://www.amazon.com" + product_link[0]["href"]
+
 
             # writes the dataset to file
-            f.write(f"{image}, {name}, {price}, Amazon\n")
+            f.write(f"{image}, {name}, {price}, Amazon, {product_link}\n")
         print("Done")
 
 

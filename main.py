@@ -23,8 +23,8 @@ def download_data(input_key, file_name):
     with open(file_name, "w", encoding="UTF-8") as file:
         file.write(headers)
     
-    # print("Collecting infos from Amazon web site...")
-    # amazon(input_key, file_name)
+    print("Collecting infos from Amazon web site...")
+    amazon(input_key, file_name)
 
     print("Collecting infos from Ebay web site...")
     ebay(input_key, file_name)
