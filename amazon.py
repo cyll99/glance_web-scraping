@@ -1,6 +1,10 @@
 from bs4 import BeautifulSoup
 import requests
 
+
+"""
+Searchs for an item on amazon and print it pictures link, price, and order link on the csv file
+"""
 def amazon(key_input, file):
     # Headers for request
     HEADERS = ({'User-Agent':
@@ -16,7 +20,6 @@ def amazon(key_input, file):
         return
 
     soup = BeautifulSoup(webpage.content, "lxml")
-    # print(soup)
 
     results = soup.find_all("div", {"data-component-type":"s-search-result"})
 

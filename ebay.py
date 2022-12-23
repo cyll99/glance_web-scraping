@@ -3,7 +3,9 @@ from urllib.request import urlopen as uReq  # Web client
 import requests
 
 
-
+"""
+Searchs for an item on ebay and print it pictures link, price, and order link on the csv file
+"""
 def ebay(key_input, file):
     page_url = "https://www.ebay.com/sch/i.html?_from=R40&_trksid=p2380057.m570.l1313&_nkw="+key_input
     # opens the connection and downloads html page from url

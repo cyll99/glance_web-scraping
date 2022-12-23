@@ -15,7 +15,9 @@ try:
 except:
     print()
 
-# Downloads data from each web site
+"""
+Downloads data from each web site
+"""
 def download_data(input_key, file_name):
  
 
